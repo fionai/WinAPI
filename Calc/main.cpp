@@ -250,24 +250,49 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				{
 				case '+': RESULT = NUM1 + NUM2;
 					break;
-				case '-': RESULT = NUM1 - NUM2;
+				case '-': 		RESULT = NUM1 - NUM2;
 					break;
 				case '*': RESULT = NUM1 * NUM2;
 					break;
-				case '/': RESULT = NUM1 / NUM2;
+				case '/': 
+				{						
+					if (NUM2)
+						RESULT = NUM1 / NUM2;
+					else
+					{
+						RESULT = 0;
+						OPERATION = 'e';
+					}
+				}
 					break;
+				case 'e': RESULT = 0;
 				}
 
-				SimbolsNum = 0;
-				while (RESULT)
+				if (OPERATION == 'e')
 				{
-					sz_VIEW_REVERSE[SimbolsNum] = RESULT % 10 + '0';
-					RESULT /= 10;
-					SimbolsNum++;
+					SimbolsNum = 1;
+					sz_VIEW[0] = 'e';
+					sz_VIEW[1] = 0;
 				}
-				for (int i = 0; i < SimbolsNum; i++)
-					sz_VIEW[i] = sz_VIEW_REVERSE[SimbolsNum - i - 1];
-				sz_VIEW[SimbolsNum] = 0;
+				else if (!RESULT)
+				{
+					SimbolsNum = 1;
+					sz_VIEW[0] = '0';
+					sz_VIEW[1] = 0;
+				}
+				else
+				{
+					SimbolsNum = 0;
+					while (RESULT)
+					{
+						sz_VIEW_REVERSE[SimbolsNum] = RESULT % 10 + '0';
+						RESULT /= 10;
+						SimbolsNum++;
+					}
+					for (int i = 0; i < SimbolsNum; i++)
+						sz_VIEW[i] = sz_VIEW_REVERSE[SimbolsNum - i - 1];
+					sz_VIEW[SimbolsNum] = 0;
+				}
 
 				HWND hEditResult = GetDlgItem(hwnd, IDC_EDIT_RESULT);
 				SendMessage(hEditResult, WM_SETTEXT, SIZE2, (LPARAM)sz_VIEW);
