@@ -1,17 +1,13 @@
 #include <Windows.h>
 #include"resource.h"
 
+CONST CHAR g_sz_LOGIN_INVITE[] = "Введите имя пользователя";
+
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
-	/*MessageBox
-	(
-		NULL, 
-		"Hello, WinAPI! Как настроение?", 
-		"Hello", 
-		MB_YESNOCANCEL | MB_ICONQUESTION | MB_HELP | MB_DEFBUTTON3 | MB_SYSTEMMODAL
-	);*/
+
 
 	DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProc, NULL);
 	return 0;
@@ -27,6 +23,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SetFocus(hEditLogin);
 		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 		SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+		SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)g_sz_LOGIN_INVITE);
 	}
 		break;
 	case WM_COMMAND:	//Обрабатывает команды с клавиатуры и мыши

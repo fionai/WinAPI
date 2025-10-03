@@ -51,7 +51,10 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			HWND hListBox = GetDlgItem(hwnd, IDC_LIST);
 			INT i = SendMessage(hListBox, LB_GETCURSEL, 0, (LPARAM)hListBox);
 			SendMessage(hListBox, LB_GETTEXT, i, (LPARAM)sz_buffer);
-			sprintf(sz_message, "Вы выбрали пункт N%i со значением \"%s\"", i, sz_buffer);
+			if (i != -1)
+				sprintf(sz_message, "Вы выбрали пункт N%i со значением \"%s\"", i, sz_buffer);
+			else 
+				sprintf(sz_message, "Выберите пункт", i, sz_buffer);
 			MessageBox(hwnd, sz_message, "Info", MB_OK | MB_ICONINFORMATION);
 		}
 			break;
