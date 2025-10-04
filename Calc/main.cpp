@@ -7,8 +7,8 @@ CONST INT SIZE2 = 10;
 INT NUM1 = 0;
 INT NUM2 = 0;
 char OPERATION = 'e';
-long long int RESULT = 0;
-CHAR sz_VIEW[SIZE2*2] = {}; 
+long long int RESULT = 0; 
+CHAR sz_VIEW[SIZE2*2] = {};
 CHAR sz_VIEW_REVERSE[SIZE2*2] = {};
 INT SimbolsNum = 0;
 
