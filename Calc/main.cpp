@@ -280,6 +280,21 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					sz_VIEW[0] = '0';
 					sz_VIEW[1] = 0;
 				}
+				else if (RESULT < 0)
+				{
+					RESULT = -RESULT;
+					sz_VIEW[0] = '-';
+					SimbolsNum = 0;
+					while (RESULT)
+					{
+						sz_VIEW_REVERSE[SimbolsNum] = RESULT % 10 + '0';
+						RESULT /= 10;
+						SimbolsNum++;
+					}
+					for (int i = 0; i < SimbolsNum; i++)
+						sz_VIEW[i+1] = sz_VIEW_REVERSE[SimbolsNum - i - 1];
+					sz_VIEW[SimbolsNum+1] = 0;
+				}
 				else
 				{
 					SimbolsNum = 0;
