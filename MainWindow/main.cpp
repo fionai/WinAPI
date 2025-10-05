@@ -35,15 +35,111 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	}
 
 	//сщздание окна
+	int monX;
+	monX = GetSystemMetrics(SM_CXSCREEN);
+	int monY;
+	monY = GetSystemMetrics(SM_CYSCREEN);
+
+	char WindowTitle[500] = {};
+	int WinTitLen = sizeof(g_sz_WND_CLASS_NAME)-1;
+	for (int i = 0; i < sizeof(g_sz_WND_CLASS_NAME); i++)
+		WindowTitle[i] = g_sz_WND_CLASS_NAME[i];
+	WindowTitle[WinTitLen++] = ' ';
+	int tmp;
+	tmp = monX * 0.125;
+	if (tmp < 10)
+	{
+		WindowTitle[WinTitLen++] = tmp + '0';
+	}
+	else if (tmp < 100)
+	{
+		WindowTitle[WinTitLen++] = tmp / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	else if (tmp < 1000)
+	{
+		WindowTitle[WinTitLen++] = tmp / 100 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 100) / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	WindowTitle[WinTitLen++] = ',';
+
+	tmp = monY * 0.125;
+	if (tmp < 10)
+	{
+		WindowTitle[WinTitLen++] = tmp + '0';
+	}
+	else if (tmp < 100)
+	{
+		WindowTitle[WinTitLen++] = tmp / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	else if (tmp < 1000)
+	{
+		WindowTitle[WinTitLen++] = tmp / 100 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 100) / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	WindowTitle[WinTitLen++] = ';';
+	WindowTitle[WinTitLen++] = ' ';
+
+	tmp = monX * 0.75;
+	if (tmp < 10)
+	{
+		WindowTitle[WinTitLen++] = tmp + '0';
+	}
+	else if (tmp < 100)
+	{
+		WindowTitle[WinTitLen++] = tmp / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	else if (tmp < 1000)
+	{
+		WindowTitle[WinTitLen++] = tmp / 100 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 100) / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	else if (tmp < 10000)
+	{
+		WindowTitle[WinTitLen++] = tmp / 1000 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 1000) / 100 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 100) / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	WindowTitle[WinTitLen++] = ',';
+
+	tmp = monY * 0.75;
+	if (tmp < 10)
+	{
+		WindowTitle[WinTitLen++] = tmp + '0';
+	}
+	else if (tmp < 100)
+	{
+		WindowTitle[WinTitLen++] = tmp / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+	else if (tmp < 1000)
+	{
+		WindowTitle[WinTitLen++] = tmp / 100 + '0';
+		WindowTitle[WinTitLen++] = (tmp % 100) / 10 + '0';
+		WindowTitle[WinTitLen++] = tmp % 10 + '0';
+	}
+
+	WindowTitle[WinTitLen] = 0;
+
+		//LPSTR WindowTitle = (LPSTR)g_sz_WND_CLASS_NAME 
 
 	HWND hwnd = CreateWindowEx
 	(
 		NULL,  //exStyles
 		g_sz_WND_CLASS_NAME, //class name
-		g_sz_WND_CLASS_NAME, //window title
+		//g_sz_WND_CLASS_NAME, //window title
+		WindowTitle,
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, //window position
-		CW_USEDEFAULT, CW_USEDEFAULT, //window size
+		//CW_USEDEFAULT, CW_USEDEFAULT, //window position
+		monX*0.125, monY*0.125,
+		//CW_USEDEFAULT, CW_USEDEFAULT, //window size
+		monX*0.75, monY*0.75,
 		NULL, //parent window
 		NULL,
 		hInstance,
@@ -139,14 +235,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			break;
 	case WM_DESTROY:
 	{
-		MessageBox(hwnd, "Лучше двери закройте", "La finita", MB_OK | MB_ICONERROR);
+		//MessageBox(hwnd, "Лучше двери закройте", "La finita", MB_OK | MB_ICONERROR);
 		PostQuitMessage(0);
 	}
 		break;
 	case WM_CLOSE:
 	{
-		//DestroyWindow(hwnd);
-		if (MessageBox(hwnd, "Вы точно хотите закрыть окно????????", "Правда правда?", MB_YESNO | MB_ICONQUESTION) == IDYES)
+		//if (MessageBox(hwnd, "Вы точно хотите закрыть окно????????", "Правда правда?", MB_YESNO | MB_ICONQUESTION) == IDYES)
 			SendMessage(hwnd, WM_DESTROY, 0, 0);
 	}
 		break;
