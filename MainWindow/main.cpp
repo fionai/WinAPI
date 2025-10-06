@@ -39,6 +39,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	monX = GetSystemMetrics(SM_CXSCREEN);
 	int monY;
 	monY = GetSystemMetrics(SM_CYSCREEN);
+	int ProcMon = 75;
+	int ProcStartDub = 100 - ProcMon;
 
 	char WindowTitle[500] = {};
 	int WinTitLen = sizeof(g_sz_WND_CLASS_NAME)-1;
@@ -46,7 +48,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		WindowTitle[i] = g_sz_WND_CLASS_NAME[i];
 	WindowTitle[WinTitLen++] = ' ';
 	int tmp;
-	tmp = monX * 0.125;
+	tmp = monX * ProcStartDub / 200;
 	if (tmp < 10)
 	{
 		WindowTitle[WinTitLen++] = tmp + '0';
@@ -64,7 +66,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	}
 	WindowTitle[WinTitLen++] = ',';
 
-	tmp = monY * 0.125;
+	tmp = monY * ProcStartDub / 200;
 	if (tmp < 10)
 	{
 		WindowTitle[WinTitLen++] = tmp + '0';
@@ -83,7 +85,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	WindowTitle[WinTitLen++] = ';';
 	WindowTitle[WinTitLen++] = ' ';
 
-	tmp = monX * 0.75;
+	tmp = monX * ProcMon / 100;
 	if (tmp < 10)
 	{
 		WindowTitle[WinTitLen++] = tmp + '0';
@@ -108,7 +110,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	}
 	WindowTitle[WinTitLen++] = ',';
 
-	tmp = monY * 0.75;
+	tmp = monY * ProcMon / 100;
 	if (tmp < 10)
 	{
 		WindowTitle[WinTitLen++] = tmp + '0';
@@ -137,9 +139,9 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		WindowTitle,
 		WS_OVERLAPPEDWINDOW,
 		//CW_USEDEFAULT, CW_USEDEFAULT, //window position
-		monX*0.125, monY*0.125,
+		monX * ProcStartDub / 200, monY * ProcStartDub / 200,
 		//CW_USEDEFAULT, CW_USEDEFAULT, //window size
-		monX*0.75, monY*0.75,
+		monX * ProcMon / 100, monY * ProcMon / 100,
 		NULL, //parent window
 		NULL,
 		hInstance,
