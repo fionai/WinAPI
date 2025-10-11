@@ -3,6 +3,7 @@
 // Used by Resource.rc
 //
 #define IDI_ICON2                       101
+#define IDC_EDIT						999
 #define IDC_BUTTON_0					1000
 #define IDC_BUTTON_1					1001
 #define IDC_BUTTON_2					1002
@@ -20,9 +21,9 @@
 #define IDC_BUTTON_ASTER 				1013
 #define IDC_BUTTON_SLASH 				1014
 
-#define IDS_BUTTON_BSP					1015
-#define IDS_BUTTON_CLR					1016
-#define IDS_BUTTON_EQUAL				1017
+#define IDC_BUTTON_BSP					1015
+#define IDC_BUTTON_CLR					1016
+#define IDC_BUTTON_EQUAL				1017
 
 // Next default values for new objects
 // 
