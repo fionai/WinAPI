@@ -3,6 +3,28 @@
 // Used by Resource.rc
 //
 #define IDI_ICON2                       101
+#define IDB_BIT_0						200
+#define IDB_BIT_1						201
+#define IDB_BIT_2						202
+#define IDB_BIT_3						203
+#define IDB_BIT_4						204
+#define IDB_BIT_5						205
+#define IDB_BIT_6						206
+#define IDB_BIT_7						207
+#define IDB_BIT_8						208
+#define IDB_BIT_9						209
+
+#define IDB_BIT_PO						210
+#define IDB_BIT_PL						211
+#define IDB_BIT_MI						212
+#define IDB_BIT_MU						213
+#define IDB_BIT_DI						214
+#define IDB_BIT_B						215
+#define IDB_BIT_C						216
+#define IDB_BIT_EQ						217
+
+
+
 #define IDC_EDIT						999
 #define IDC_BUTTON_0					1000
 #define IDC_BUTTON_1					1001

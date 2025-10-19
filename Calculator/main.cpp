@@ -103,6 +103,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 	{
+		HBITMAP hBitmap;
+		//HINSTANCE hInstance;
 		HWND hEdit = CreateWindowEx
 		(
 			NULL, "Edit", "0",
@@ -121,10 +123,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			for (int j = 0; j < 3; j++)
 			{
 				sz_digit[0] = digit + '0';
+				hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_0+digit));
 				CreateWindowEx
 				(
-					NULL, "Button", sz_digit,
-					WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+					NULL, "Button", "",// sz_digit,
+					WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 					g_i_BUTTON_START_X + (g_i_BUTTON_SIZE + g_i_INTERVAL) * j,
 					g_i_BUTTON_START_Y + (g_i_BUTTON_SIZE + g_i_INTERVAL) * i/3,
 					g_i_BUTTON_SIZE, g_i_BUTTON_SIZE,
@@ -133,14 +136,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 					GetModuleHandle(NULL),
 					NULL
 				);
+				SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0+digit), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+
 				digit++;
 			}
 
 		}
+		hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_0));
 		CreateWindowEx
 		(
 			NULL, "Button", "0",
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 			g_i_BUTTON_START_X, BUTTON_SHIFT_Y(3),
 			g_i_BUTTON_DOUBLE_SIZE, g_i_BUTTON_SIZE,
 			hwnd,
@@ -148,10 +154,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+
+		hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_PO));
 		CreateWindowEx
 		(
 			NULL, "Button", ".",
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 			BUTTON_SHIFT_X(2), BUTTON_SHIFT_Y(3),
 			g_i_BUTTON_SIZE, g_i_BUTTON_SIZE,
 			hwnd,
@@ -159,38 +168,46 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_POINT), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+
 		CHAR operation[2] = "";
 		for (int i = 0; i < 4; i++)
 		{
 			operation[0] = g_OPERATIONS[i];
+			hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_PL+i));
 			CreateWindowEx
 			(
 				NULL, "Button", operation,
-				WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+				WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 				BUTTON_SHIFT_X(3),BUTTON_SHIFT_Y(3-i),
-				//g_i_BUTTON_START_Y + (g_i_BUTTON_SIZE + g_i_INTERVAL) * (3-i),
 				g_i_BUTTON_SIZE, g_i_BUTTON_SIZE,
 				hwnd,
 				(HMENU)(IDC_BUTTON_PLUS+i),
 				GetModuleHandle(NULL),
 				NULL
 			);
+			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_PLUS+i), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
 		}
+
+		hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_B));
 		CreateWindowEx
 		(
-			NULL, "Button", "<--",
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
-			BUTTON_SHIFT_X(4), BUTTON_SHIFT_Y(0), 
+			NULL, "Button", "",
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
+			BUTTON_SHIFT_X(4), BUTTON_SHIFT_Y(0),
 			g_i_BUTTON_SIZE, g_i_BUTTON_SIZE,
 			hwnd,
 			(HMENU)IDC_BUTTON_BSP,
 			GetModuleHandle(NULL),
 			NULL
 		);
+		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_BSP), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+
+		hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_C));
 		CreateWindowEx
 		(
 			NULL, "Button", "C",
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 			BUTTON_SHIFT_X(4), BUTTON_SHIFT_Y(1),
 			g_i_BUTTON_SIZE, g_i_BUTTON_SIZE,
 			hwnd,
@@ -198,10 +215,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_CLR), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
+
+		hBitmap = LoadBitmap(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_BIT_EQ));
 		CreateWindowEx
 		(
 			NULL, "Button", "=",
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_BITMAP,
 			BUTTON_SHIFT_X(4), BUTTON_SHIFT_Y(2),
 			g_i_BUTTON_SIZE, g_i_BUTTON_DOUBLE_SIZE,
 			hwnd,
@@ -209,6 +229,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_EQUAL), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap);
 	}
 		break;
 	case WM_COMMAND:
@@ -284,6 +305,37 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			sprintf(sz_display, "%g", a);
 			SendMessage(hEdit, WM_SETTEXT, 0, (LPARAM)sz_display);
 		}
+	}
+		break;
+	case WM_KEYDOWN:
+	{
+		//CONST INT SIZE = 256;
+		//CHAR sz_display[SIZE] = {};
+		//CHAR sz_digit[2] = {};
+		INT key;
+		key = LOWORD(wParam);
+		HWND hEdit = GetDlgItem(hwnd, IDC_EDIT);
+		//SendMessage(hEdit, WM_SETTEXT, 0, (LPARAM)sz_display);
+		if (LOWORD(wParam) >= 96 && LOWORD(wParam) <= 105)
+			wParam -= 48;
+		if (LOWORD(wParam) >= 48 && LOWORD(wParam) <= 57)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_0 + wParam - 48), 0);
+		if (LOWORD(wParam) == 107)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_PLUS), 0);
+		if (LOWORD(wParam) == 189 || LOWORD(wParam) == 109)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_MINUS), 0);
+		if (LOWORD(wParam) == 106)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_ASTER), 0);
+		if (LOWORD(wParam) == 191 || LOWORD(wParam) == 111)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_SLASH), 0);
+		if (LOWORD(wParam) == 13 || LOWORD(wParam) == 187)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_EQUAL), 0);
+		if (LOWORD(wParam) == 8 || LOWORD(wParam) == 46)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_BSP), 0);
+		if (LOWORD(wParam) == 110 || LOWORD(wParam) == 190 || LOWORD(wParam) == 188)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_BSP), 0);
+		if (LOWORD(wParam) == 67 || LOWORD(wParam) == 27)
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);
 	}
 		break;
 	case WM_DESTROY:
