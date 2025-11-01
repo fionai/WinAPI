@@ -224,6 +224,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		CHAR sz_digit[2] = {};
 		HWND hEdit = GetDlgItem(hwnd, IDC_EDIT);
 		SendMessage(hEdit, WM_GETTEXT, SIZE, (LPARAM)sz_display);
+	
 		if (LOWORD(wParam) >= IDC_BUTTON_0 && LOWORD(wParam) <= IDC_BUTTON_9)
 		{
 			if (input_operation)
