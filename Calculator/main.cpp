@@ -122,6 +122,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//HANDLE_MSG(hwnd, WM_RBUTTONDOWN, onRightClick(hwnd, uMsg, wParam, lParam));
 	case WM_CREATE:
 	{
+
 		HWND hEdit = CreateWindowEx
 		(
 			NULL, "Edit", "0",
@@ -438,9 +439,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[])
 {
+		CHAR sz_filename[FILENAME_MAX] = {};
 	for (int i = 0; i < 10; i++)
 	{
-		CHAR sz_filename[FILENAME_MAX] = {};
 		sprintf(sz_filename, "ButtonsBMP\\%s\\button_%i.bmp", SZ_SKIN, i);
 		HBITMAP hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
 			sz_filename,
@@ -451,6 +452,78 @@ void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[])
 			);
 		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0 + i), BM_SETIMAGE, 0, (LPARAM)hBitmap);
 	}
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_bsp.bmp", SZ_SKIN);
+	HBITMAP hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_BSP), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_aster.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_ASTER), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_clr.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_CLR), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_minus.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_MINUS), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_plus.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_PLUS), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_slash.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_SLASH), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_point.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_POINT), BM_SETIMAGE, 0, (LPARAM)hBitmap);
+	sprintf(sz_filename, "ButtonsBMP\\%s\\button_equal.bmp", SZ_SKIN);
+	hBitmap = (HBITMAP)LoadImage(GetModuleHandle(NULL),
+		sz_filename,
+		IMAGE_BITMAP,
+		g_i_BUTTON_SIZE,
+		g_i_BUTTON_DOUBLE_SIZE,
+		LR_LOADFROMFILE
+	);
+	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_EQUAL), BM_SETIMAGE, 0, (LPARAM)hBitmap);
 }
 //static void onRightClick(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //{
