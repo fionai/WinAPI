@@ -2,10 +2,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include <Windows.h>
+#include <windowsx.h>
 #include"resource.h"
 #include<float.h>
 
-//CONST INT SIZE = 256;
 
 CONST CHAR g_sz_CLASS_NAME[] = "Calc_CPU_411";
 
@@ -30,6 +30,7 @@ CONST INT g_i_OPERATIONS_START_X = g_i_BUTTON_START_X + (g_i_BUTTON_SIZE + g_i_I
 #define BUTTON_SHIFT_Y(shift) g_i_BUTTON_START_Y + (g_i_BUTTON_SIZE + g_i_INTERVAL) * (shift)
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+//static void onRightClick(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[]);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR plCmdLine, INT nCmdShow)
@@ -100,8 +101,25 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static INT operation = 0;
 	static BOOL input = false;
 	static BOOL input_operation = false;
+	int aa = 100;
+	static CHAR skin_style[2][50] = { "square_blue", "metal_mistral"};
+	static INT skin_number = 0;
 	switch (uMsg)
 	{
+	case WM_RBUTTONUP:
+	{
+		/*HMENU RightClickMenu = CreateMenu();
+		HMENU hPopMenuFile = CreatePopupMenu();
+		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Blue style");
+		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Metall style");
+
+		SetMenu(hwnd, RightClickMenu);
+		SetMenu(hwnd, hPopMenuFile);*/
+		skin_number = (skin_number + 1) % 2;
+		SetSkin(hwnd, skin_style[skin_number]);
+	}
+	break;
+		//HANDLE_MSG(hwnd, WM_RBUTTONDOWN, onRightClick(hwnd, uMsg, wParam, lParam));
 	case WM_CREATE:
 	{
 		HWND hEdit = CreateWindowEx
@@ -215,7 +233,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			NULL
 		);
 	}
-	SetSkin(hwnd, "square_blue");
+	//SetSkin(hwnd, "square_blue");
+	SetSkin(hwnd, skin_style[skin_number]);
 	break;
 	case WM_COMMAND:
 	{
@@ -433,3 +452,7 @@ void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[])
 		SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0 + i), BM_SETIMAGE, 0, (LPARAM)hBitmap);
 	}
 }
+//static void onRightClick(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//{
+//	MessageBox(hwnd, TEXT("R_CLICK"), TEXT("MessageBox"), MB_OK);
+//}
