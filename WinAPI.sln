@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceOnlyDLL", "ResourceOnlyDLL\ResourceOnlyDLL.vcxproj", "{A4B18889-A7B9-4ABC-81CE-505A01927E58}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CalculatorInst", "CalculatorInst\CalculatorInst.vdproj", "{03AF1674-AE29-E769-4874-B5CA4B295020}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,10 @@ Global
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x64.Build.0 = Release|x64
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x86.ActiveCfg = Release|Win32
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x86.Build.0 = Release|Win32
+		{03AF1674-AE29-E769-4874-B5CA4B295020}.Debug|x64.ActiveCfg = Debug
+		{03AF1674-AE29-E769-4874-B5CA4B295020}.Debug|x86.ActiveCfg = Debug
+		{03AF1674-AE29-E769-4874-B5CA4B295020}.Release|x64.ActiveCfg = Release
+		{03AF1674-AE29-E769-4874-B5CA4B295020}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
