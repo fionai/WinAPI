@@ -101,8 +101,28 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static INT operation = 0;
 	static BOOL input = false;
 	static BOOL input_operation = false;
+
+	static CHAR skin_style[2][50] = { "square_blue", "metal_mistral" };
+	static INT skin_number = 0;
 	switch (uMsg)
 	{
+	case WM_RBUTTONUP:
+	{
+		/*HMENU RightClickMenu = CreateMenu();
+		HMENU hPopMenuFile = CreatePopupMenu();
+		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Blue style");
+		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Metall style");
+
+		SetMenu(hwnd, RightClickMenu);
+		SetMenu(hwnd, hPopMenuFile);*/
+		skin_number = (skin_number + 1) % 2;
+		//SetSkin(hwnd, skin_style[skin_number]);
+		SetSkinDLL(hwnd, skin_style[skin_number]);
+	}
+
+
+	//switch (uMsg)
+	//{
 	case WM_CREATE:
 	{
 		AllocConsole();
@@ -244,7 +264,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		);
 	}
 	//SetSkin(hwnd, "square_blue");
-	SetSkinDLL(hwnd, "square_blue");
+	SetSkinDLL(hwnd, skin_style[skin_number]);
 	//SetSkinDLL(hwnd, "metal_mistral");
 	break;
 	case WM_COMMAND:
