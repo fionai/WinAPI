@@ -7,7 +7,6 @@
 #include <winuser.h>
 #include <iostream>
 
-//CONST INT SIZE = 256;
 
 CONST CHAR g_sz_CLASS_NAME[] = "Calc_CPU_411";
 
