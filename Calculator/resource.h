@@ -15,6 +15,12 @@
 #define IDC_BUTTON_8					1008
 #define IDC_BUTTON_9					1009
 
+
+#define IDC_MENU_BLUE				1021
+#define IDC_MENU_METAL				1022
+#define IDC_MENU_FONT1				1023
+#define IDC_MENU_FONT2				1024
+
 #define IDC_BUTTON_POINT				1010
 #define IDC_BUTTON_PLUS 				1011
 #define IDC_BUTTON_MINUS 				1012

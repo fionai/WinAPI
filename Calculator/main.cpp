@@ -1,9 +1,11 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-//#include <iostream.h>
+
 #include <Windows.h>
 #include"resource.h"
 #include<float.h>
+#include <winuser.h>
+#include <iostream>
 
 //CONST INT SIZE = 256;
 
@@ -32,6 +34,8 @@ CONST INT g_i_OPERATIONS_START_X = g_i_BUTTON_START_X + (g_i_BUTTON_SIZE + g_i_I
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[]);
 void SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[]);
+void SetFont(HWND hEdit, CONST CHAR FontName[]);
+//void AddFontResourceZombie(CONST CHAR FontName[]);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR plCmdLine, INT nCmdShow)
 {
@@ -101,30 +105,31 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static INT operation = 0;
 	static BOOL input = false;
 	static BOOL input_operation = false;
-
+	static HMENU RightClickMenu;
 	static CHAR skin_style[2][50] = { "square_blue", "metal_mistral" };
 	static INT skin_number = 0;
+	 // 289
 	switch (uMsg)
 	{
-	case WM_RBUTTONUP:
+	case WM_CONTEXTMENU:
 	{
-		/*HMENU RightClickMenu = CreateMenu();
-		HMENU hPopMenuFile = CreatePopupMenu();
-		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Blue style");
-		AppendMenu(RightClickMenu, MF_STRING | MF_POPUP, (UINT)hPopMenuFile, "Metall style");
+		HMENU hMenu = CreatePopupMenu();
+		AppendMenu(hMenu, MF_STRING, IDC_MENU_BLUE, "Blue style");
+		AppendMenu(hMenu, MF_STRING, IDC_MENU_METAL, "Metal style");
+		AppendMenu(hMenu, MF_STRING, IDC_MENU_FONT1, "Digital font");
+		AppendMenu(hMenu, MF_STRING, IDC_MENU_FONT2, "Zombie font");
 
-		SetMenu(hwnd, RightClickMenu);
-		SetMenu(hwnd, hPopMenuFile);*/
-		skin_number = (skin_number + 1) % 2;
-		//SetSkin(hwnd, skin_style[skin_number]);
-		SetSkinDLL(hwnd, skin_style[skin_number]);
+
+		TrackPopupMenu(hMenu, TPM_RIGHTBUTTON, LOWORD(lParam), HIWORD(lParam), 0, hwnd, NULL);
+		DestroyMenu(hMenu);
+		return 0;
+
 	}
+	break;
 
-
-	//switch (uMsg)
-	//{
 	case WM_CREATE:
 	{
+		RightClickMenu = CreateMenu();
 		AllocConsole();
 		freopen("CONOUT$", "w", stdout);
 		HWND hEdit = CreateWindowEx
@@ -141,7 +146,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 
 		///////////////////////////////////////////////////////////////////////////
-		AddFontResourceEx("Fonts\\digital-7 (mono).ttf", FR_PRIVATE, 0);
+	/*	AddFontResourceEx("Fonts\\digital-7 (mono).ttf", FR_PRIVATE, 0);
 		HFONT hFont = CreateFontA
 		(
 			g_i_SCREEN_HEIGHT - 2,
@@ -159,7 +164,29 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			DEFAULT_PITCH,
 			"Digital-7 Mono"
 		);
+		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);*/
+
+		AddFontResourceEx("Fonts\\Zombies.ttf", FR_PRIVATE, 0);
+		HFONT hFont = CreateFontA
+		(
+			g_i_SCREEN_HEIGHT - 2,
+			g_i_SCREEN_HEIGHT / 2,
+			0,
+			0,
+			500,
+			0,
+			0,
+			0,
+			DEFAULT_CHARSET,
+			OUT_DEFAULT_PRECIS,
+			CLIP_CHARACTER_PRECIS,
+			ANTIALIASED_QUALITY,
+			DEFAULT_PITCH,
+			"Zombies"
+		);
 		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);
+
+
 		///////////////////////////////////////////////////////////////////////////
 
 
@@ -340,6 +367,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			sprintf(sz_display, "%g", a);
 			SendMessage(hEdit, WM_SETTEXT, 0, (LPARAM)sz_display);
 		}
+
+		switch (LOWORD(wParam))
+		{
+		case IDC_MENU_BLUE:
+			SetSkinDLL(hwnd, "square_blue"); break;
+		case IDC_MENU_METAL:
+			SetSkinDLL(hwnd, "metal_mistral"); break;
+		case IDC_MENU_FONT1:
+			SetFont(hEdit, "Digital");  break;
+		case IDC_MENU_FONT2:
+			SetFont(hEdit, "Zombie");  break;
+		}
+
 	}
 	break;
 	case WM_KEYDOWN:
@@ -432,7 +472,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_SLASH), BM_SETSTATE, FALSE, 0);
 			SendMessage(hwnd, WM_COMMAND, IDC_BUTTON_SLASH, 0);
 			break;
-			//case VK_OEM_MINUS: SendMessage(GetDlgItem(hwnd, IDC_BUTTON_MINUS), BM_SETSTATE, TRUE, 0); break;
 		case VK_DECIMAL:
 		case VK_OEM_PERIOD:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_POINT), BM_SETSTATE, FALSE, 0);
@@ -452,8 +491,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			break;
 
 		}
-		//case VK_OEM_PERIOD:
-		//	SendMessage(GetDlgItem(hwnd, IDC_BUTTON_POINT), BM_SETSTATE, FALSE, 0); break;
+
 	}
 	break;
 	case WM_DESTROY:
@@ -495,7 +533,6 @@ void SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[])
 			MAKEINTRESOURCE(i),
 			IMAGE_BITMAP,
 			i > IDC_BUTTON_0 ? g_i_BUTTON_SIZE: g_i_BUTTON_DOUBLE_SIZE,
-			//g_i_BUTTON_SIZE,
 			i == IDC_BUTTON_EQUAL ? g_i_BUTTON_DOUBLE_SIZE : g_i_BUTTON_SIZE,
 			LR_SHARED
 			);
@@ -503,3 +540,53 @@ void SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[])
 	}
 	//FreeLibrary(hSkin);
 }
+void SetFont(HWND hEdit, CONST CHAR FontName[])
+{
+	if (FontName == "Zombie")
+	{
+		AddFontResourceEx("Fonts\\Zombies.ttf", FR_PRIVATE, 0);
+		HFONT hFont = CreateFontA
+		(
+			g_i_SCREEN_HEIGHT - 2,
+			g_i_SCREEN_HEIGHT / 2,
+			0,
+			0,
+			500,
+			0,
+			0,
+			0,
+			DEFAULT_CHARSET,
+			OUT_DEFAULT_PRECIS,
+			CLIP_CHARACTER_PRECIS,
+			ANTIALIASED_QUALITY,
+			DEFAULT_PITCH,
+			"Zombies"
+		);
+		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);
+	}
+	else if (FontName == "Digital")
+	{
+		AddFontResourceEx("Fonts\\digital-7 (mono).ttf", FR_PRIVATE, 0);
+		HFONT hFont = CreateFontA
+		(
+			g_i_SCREEN_HEIGHT - 2,
+			g_i_SCREEN_HEIGHT / 2,
+			0,
+			0,
+			500,
+			0,
+			0,
+			0,
+			DEFAULT_CHARSET,
+			OUT_DEFAULT_PRECIS,
+			CLIP_CHARACTER_PRECIS,
+			ANTIALIASED_QUALITY,
+			DEFAULT_PITCH,
+			"Digital-7 Mono"
+		);
+		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);
+	}
+}
+
+
+
