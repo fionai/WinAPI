@@ -129,8 +129,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 	{
 		RightClickMenu = CreateMenu();
-		AllocConsole();
-		freopen("CONOUT$", "w", stdout);
+		//AllocConsole();
+		//freopen("CONOUT$", "w", stdout);
 		HWND hEdit = CreateWindowEx
 		(
 			NULL, "Edit", "0",
@@ -525,7 +525,7 @@ void SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[])
 	for (int i = IDC_BUTTON_0; i <= IDC_BUTTON_EQUAL; i++)
 	{
 		//CHAR sz_filename[FILENAME_MAX] = {};
-		//sprintf(sz_filename, "ButtonsBMP\\%s\\button_%i.bmp", SZ_SKIN, i);
+		//sprintf(sz_filename, "ButtonsBMP\\%s\\button_%i.bmp", SZ_SKIN, i); 
 		HBITMAP hBitmap = (HBITMAP)LoadImage
 		(
 			hSkin,

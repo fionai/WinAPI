@@ -17,9 +17,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceOnlyDLL", "ResourceOnlyDLL\ResourceOnlyDLL.vcxproj", "{A4B18889-A7B9-4ABC-81CE-505A01927E58}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CalculatorInst", "CalculatorInst\CalculatorInst.vdproj", "{03AF1674-AE29-E769-4874-B5CA4B295020}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FontsDLL", "FontsDLL\FontsDLL.vcxproj", "{144ACB11-DB9D-41C1-8E65-249C4A137279}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CalculatorSetup", "CalculatorSetup\CalculatorSetup.vdproj", "{339BB482-79F0-2A56-9ED4-EE65F1577E89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +85,6 @@ Global
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x64.Build.0 = Release|x64
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x86.ActiveCfg = Release|Win32
 		{A4B18889-A7B9-4ABC-81CE-505A01927E58}.Release|x86.Build.0 = Release|Win32
-		{03AF1674-AE29-E769-4874-B5CA4B295020}.Debug|x64.ActiveCfg = Debug
-		{03AF1674-AE29-E769-4874-B5CA4B295020}.Debug|x86.ActiveCfg = Debug
-		{03AF1674-AE29-E769-4874-B5CA4B295020}.Release|x64.ActiveCfg = Release
-		{03AF1674-AE29-E769-4874-B5CA4B295020}.Release|x86.ActiveCfg = Release
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Debug|x64.ActiveCfg = Debug|x64
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Debug|x64.Build.0 = Debug|x64
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Debug|x86.ActiveCfg = Debug|Win32
@@ -97,6 +93,11 @@ Global
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Release|x64.Build.0 = Release|x64
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Release|x86.ActiveCfg = Release|Win32
 		{144ACB11-DB9D-41C1-8E65-249C4A137279}.Release|x86.Build.0 = Release|Win32
+		{339BB482-79F0-2A56-9ED4-EE65F1577E89}.Debug|x64.ActiveCfg = Debug
+		{339BB482-79F0-2A56-9ED4-EE65F1577E89}.Debug|x86.ActiveCfg = Debug
+		{339BB482-79F0-2A56-9ED4-EE65F1577E89}.Debug|x86.Build.0 = Debug
+		{339BB482-79F0-2A56-9ED4-EE65F1577E89}.Release|x64.ActiveCfg = Release
+		{339BB482-79F0-2A56-9ED4-EE65F1577E89}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
