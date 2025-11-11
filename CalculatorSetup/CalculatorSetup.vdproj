@@ -15,8 +15,20 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_3381D00077214B6992E52E178DC03279"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_39D8B677FFC46866BC9E691E3CBEBC27"
         "OwnerKey" = "8:_557E0F986DBC4114B6429994BFBF1545"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3A6A20711E504707B5428CE9FD840C02"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -98,6 +110,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3381D00077214B6992E52E178DC03279"
+            {
+            "SourcePath" = "8:..\\Calculator\\Fonts\\digital-7 (mono).ttf"
+            "TargetName" = "8:digital-7 (mono).ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_27ED210474F34D149EA3C3522D07C35C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_39D8B677FFC46866BC9E691E3CBEBC27"
             {
             "SourcePath" = "8:VCRUNTIME140D.dll"
@@ -116,6 +148,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3A6A20711E504707B5428CE9FD840C02"
+            {
+            "SourcePath" = "8:..\\Calculator\\Fonts\\Zombies.ttf"
+            "TargetName" = "8:Zombies.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_27ED210474F34D149EA3C3522D07C35C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5CD8C566015A4DC79EB217542C980E8B"
@@ -235,7 +287,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CalculatorSetup"
         "ProductCode" = "8:{8D9F0C81-1ACC-4F24-A7E1-6FE2CBA98B84}"
-        "PackageCode" = "8:{2D71727F-2D81-49C1-BC6A-FAB5A0B88EAD}"
+        "PackageCode" = "8:{2122BCC3-70C2-4B15-822D-EE967B71DAC0}"
         "UpgradeCode" = "8:{C929419C-C112-45A7-8A32-528E06FA824C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

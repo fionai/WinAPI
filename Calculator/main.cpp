@@ -34,6 +34,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void SetSkin(HWND hwnd, CONST CHAR SZ_SKIN[]);
 void SetSkinDLL(HWND hwnd, CONST CHAR SZ_SKIN[]);
 void SetFont(HWND hEdit, CONST CHAR FontName[]);
+
 //void AddFontResourceZombie(CONST CHAR FontName[]);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR plCmdLine, INT nCmdShow)
